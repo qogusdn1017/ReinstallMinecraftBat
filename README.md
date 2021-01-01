@@ -5,7 +5,7 @@ Reinstalls Minecraft with a Batch file. Officially downloads from a Mojang Serve
 
 ## 시발련아 이게 뭐노 (WTF DID U MAKE BRO)
 
-배치파일 마크 재설치다 왜 (IT'S A Minecraft Reinstaller in Batch. WHAT?)
+배치파일 마크 재설치다 왜 (IT'S A Minecraft Reinstaller in Batch. WHY?)
 
 ---
 
@@ -25,4 +25,4 @@ Reinstalls Minecraft with a Batch file. Officially downloads from a Mojang Serve
 
 ## 라이선스? (LICENSE?)
 
-[MIT](https://github.com/qogusdn1017/blob/main/LICENSE)
+[MIT](https://github.com/qogusdn1017/ReinstallMinecraftBat/blob/main/LICENSE)
