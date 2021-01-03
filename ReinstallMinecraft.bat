@@ -48,19 +48,19 @@ GOTO MDIR
 
 
 :MDIR
-@echo Checking if ".minecraft" directory exists...
+@echo Checking if ".minecraft" and "Minecraft Launcher" directory exists...
 IF EXIST %appdata%\.minecraft GOTO MWARN
 mkdir %appdata%\.minecraft
 @echo You don't have ".minecraft" directory! I'll create a new one.
 GOTO INSTALL
 
 :MWARN
-@echo WARNING! You already have ".minecraft" directory on your computer.
+@echo WARNING! You already have ".minecraft" or "Minecraft Launcher" directory on your computer.
 echo This batch file is intended for reinstalling Minecraft.
 echo Enter "b" for backup (.minecraft directory), "u" to completely delete or uninstall and continue, or "n" to quit.
 @echo =======================================
-@echo     b. Backup ".minecraft" directory and delete ".minecraft".
-@echo     u. Just completely delete or uninstall Minecraft.                          
+@echo     b. Backup ".minecraft" directory and delete ".minecraft" and "Minecraft Launcher".
+@echo     u. Just completely delete and uninstall Minecraft.                          
 @echo     q. Quit
 @echo =======================================
 
@@ -74,19 +74,21 @@ cd %userprofile%\Desktop
 mkdir dotMinecraftDirBackup
 cd dotMinecraftDirBackup
 xcopy "%appdata%\.minecraft" .\ /E /Y
-@echo Removing ".minecraft" directory...
+@echo Removing ".minecraft" and "Minecraft Launcher" directory...
 rmdir /s /q "%appdata%\.minecraft"
+rmdir /s /q "%userprofile%\Desktop\Minecraft Launcher"
 cls
 goto MDIR
 
 :u
-@echo Permanently deleting ".minecraft" files!!!
+@echo Permanently deleting ".minecraft" and "Minecraft Launcher" files!!!
 rmdir /s /q "%appdata%\.minecraft"
 cd %userprofile%\Desktop
 @echo Uninsitalling Minecraft Launcher with .msi! This is for preventing crash!
 curl https://launcher.mojang.com/download/MinecraftInstaller.msi --output MinecraftLauncher.msi
 msiexec /x MinecraftLauncher.msi /quiet /qn /passive
 del MinecraftLauncher.msi /s /q
+rmdir /s /q ".\Minecraft Launcher"
 cls
 goto MDIR
 
@@ -134,9 +136,9 @@ echo Exiting after creating link file of your Minecraft...
 IF NOT EXIST Minecraft.exe GOTO MIL
 
 echo [InternetShortcut] >> "%userprofile%\Desktop\Minecraft Launcher.url"
-echo URL=".\Minecraft.exe" >> "..\Minecraft Launcher.url"
-echo IconFile=".\Minecraft.exe" >> "..\Minecraft Launcher.url"
-echo IconIndex=0 >> "..\Minecraft Launcher.url"
+echo URL="%userprofile%\Desktop\Minecraft Launcher\Minecraft.exe" >> "%userprofile%\Desktop\Minecraft Launcher.url"
+echo IconFile="%userprofile%\Desktop\Minecraft Launcher\Minecraft.exe" >> "%userprofile%\Desktop\Minecraft Launcher.url"
+echo IconIndex=0 >> "%userprofile%\Desktop\Minecraft Launcher.url"
 
 
 taskkill /f /im Minecraft.exe
@@ -147,9 +149,9 @@ exit
 IF NOT EXIST Minceraft.exe GOTO ERR
 
 echo [InternetShortcut] >> "%userprofile%\Desktop\Minecraft Launcher.url"
-echo URL=".\Minceraft.exe" >> "..\Minecraft Launcher.url"
-echo IconFile=".\Minceraft.exe" >> "..\Minecraft Launcher.url"
-echo IconIndex=0 >> "..\Minecraft Launcher.url"
+echo URL="%userprofile%\Desktop\Minecraft Launcher\Minceraft.exe" >> "%userprofile%\Desktop\Minecraft Launcher.url"
+echo IconFile="%userprofile%\Desktop\Minecraft Launcher\Minceraft.exe" >> "%userprofile%\Desktop\Minecraft Launcher.url"
+echo IconIndex=0 >> "%userprofile%\Desktop\Minecraft Launcher.url"
 
 taskkill /f /im Minceraft.exe
 cls
